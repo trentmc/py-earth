@@ -29,7 +29,7 @@ cdef class PruningPasser:
         self.sample_weight = sample_weight
         self.verbose = verbose
         self.basis = basis
-        self.B = np.empty(shape=(self.m, len(self.basis) + 1), dtype=np.float)
+        self.B = np.empty(shape=(self.m, len(self.basis) + 1), dtype=np.float64)
         self.penalty = kwargs.get('penalty', 3.0)
         if sample_weight.shape[1] == 1:
             y_avg = np.average(self.y, weights=sample_weight[:,0], axis=0)
@@ -97,11 +97,11 @@ cdef class PruningPasser:
             else:
                 self.basis.weighted_transform(X, missing, B, sample_weight[:, p])
             beta, mse_ = np.linalg.lstsq(B[:, 0:(basis_size)], weighted_y)[0:2]
-            if mse_:
-                pass
+            if np.size(mse_) > 0:
+                mse_ = float(mse_[0])
             else:
-                mse_ = np.sum(
-                    (np.dot(B[:, 0:basis_size], beta) - weighted_y) ** 2)
+                mse_ = float(np.sum(
+                    (np.dot(B[:, 0:basis_size], beta) - weighted_y) ** 2))
             mse += mse_
         
         # Create the record object
@@ -143,12 +143,11 @@ cdef class PruningPasser:
                         self.basis.weighted_transform(X, missing, B, sample_weight[:, p])
                     beta, mse_ = np.linalg.lstsq(
                         B[:, 0:pruned_basis_size], weighted_y)[0:2]
-                    if mse_:
-                        pass
-#                         mse_ /= np.sum(self.sample_weight)
+                    if np.size(mse_) > 0:
+                        mse_ = float(mse_[0])
                     else:
-                        mse_ = np.sum((np.dot(B[:, 0:pruned_basis_size], beta) -
-                                    weighted_y) ** 2) #/ np.sum(sample_weight)
+                        mse_ = float(np.sum((np.dot(B[:, 0:pruned_basis_size], beta) -
+                                    weighted_y) ** 2)) #/ np.sum(sample_weight)
                     mse += mse_# * output_weight[p]
                 gcv_ = gcv(mse / np.sum(sample_weight), pruned_basis_size, self.m, self.penalty)
 

@@ -508,7 +508,7 @@ class Earth(BaseEstimator, RegressorMixin, TransformerMixin):
 
         # Make sure everything is consistent
         check_X_y(X, y, accept_sparse=False, multi_output=True,
-                  force_all_finite=False)
+                  ensure_all_finite=False)
 
         return X, y, sample_weight, None, missing
 
