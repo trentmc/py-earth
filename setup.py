@@ -128,8 +128,11 @@ def setup_package():
                         'Topic :: Scientific/Engineering',
                         'Topic :: Software Development'],
         'install_requires': [
+            'configparser',
+            'numpy',
             'scipy >= 0.16',
             'scikit-learn >= 0.16',
+            'setuptools',
             'six'
             ],
         'extras_require': {'docs': ['sphinx_gallery'],
