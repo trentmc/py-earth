@@ -25,7 +25,7 @@ pip install numpy scipy cython six scikit-learn
 python setup.py build_ext --inplace --cythonize
 ```
 
-## Usage
+## Usage: 1D model
 ```python
 import numpy
 from pyearth import Earth
@@ -39,7 +39,7 @@ X = 80*numpy.random.uniform(size=(m,n)) - 40
 y = numpy.abs(X[:,6] - 4.0) + 1*numpy.random.normal(size=m)
     
 #Fit an Earth model
-model = Earth()
+model = Earth(use_fast=True) # use_fast = FAST Mars y/n
 model.fit(X,y)
     
 #Print the model
@@ -56,6 +56,59 @@ pyplot.ylabel('y')
 pyplot.title('Simple Earth Example')
 pyplot.show()
  ```
+
+## Usage: 2D Model
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn import datasets
+from sklearn.metrics import mean_squared_error, r2_score
+from pyearth import Earth
+
+# Load the diabetes dataset (10 input features, 442 samples)
+diabetes_X, diabetes_y = datasets.load_diabetes(return_X_y=True)
+N, n = diabetes_X.shape
+print(f"N (# samples) = {N}, n (# features) = {n}")
+
+# Split data into train vs test
+X_train, X_test = diabetes_X[:-20], diabetes_X[-20:]
+y_train, y_test = diabetes_y[:-20], diabetes_y[-20:]
+print(f"N_train = {len(y_train)}, N_test = {len(y_test)}")
+
+# Create and train MARS model (with feature importance)
+model = Earth(feature_importance_type='gcv', use_fast=True)
+model.fit(X_train, y_train)
+
+# Print the model
+print(model.summary())
+
+# Variable importances: find the two most important
+imps = model.feature_importances_
+imps_I = np.argsort(-imps)
+var0, var1 = imps_I[0], imps_I[1]
+print(f"Most important vars: {var0}, {var1}")
+
+# Predict on test set
+yhat_test = model.predict(X_test)
+
+# Performance
+mse = mean_squared_error(y_test, yhat_test)
+R2 = r2_score(y_test, yhat_test)
+print(f"MSE: {mse:.2f}, R^2: {R2:.2f}")
+
+# 3D Plot: actual vs predicted, over the two most important variables
+v0, v1 = X_test[:, var0], X_test[:, var1]
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+ax.scatter(v0, v1, y_test, marker='o', label='actual')
+ax.scatter(v0, v1, yhat_test, marker='^', label='predicted')
+ax.set_xlabel(f"x{var0}")
+ax.set_ylabel(f"x{var1}")
+ax.set_zlabel("y")
+ax.set_title(f"MARS on Diabetes (MSE={mse:.1f}, R^2={R2:.2f})")
+ax.legend()
+plt.show()
+```
 
 ## Appendix: References
 
