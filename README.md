@@ -17,14 +17,11 @@ cd py-earth
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install build dependencies (Cython is needed to regenerate C extensions)
-pip install numpy scipy cython
+# Install dependencies
+pip install numpy scipy cython six scikit-learn
 
-# Install with Cython compilation (required for Python 3.12+)
-python setup.py install --cythonize
-
-# Install remaining runtime dependencies
-pip install six scikit-learn
+# Build Cython extensions in-place (required for Python 3.12+)
+python setup.py build_ext --inplace --cythonize
 ```
 
 ## Usage
