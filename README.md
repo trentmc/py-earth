@@ -26,9 +26,17 @@ If there are other features or improvements you'd like to see in py-earth, pleas
 Make sure you have numpy and scikit-learn installed.  Then do the following:
 
 ```
-git clone git://github.com/scikit-learn-contrib/py-earth.git
+git clone https://github.com/trentmc/py-earth.git
 cd py-earth
-sudo python setup.py install
+
+# create virtualenv
+python -m venv venv
+
+# turn on virtualenv. (To turn off: "deactivate")
+source venv/bin/activate
+
+# install (fix dependencies as needed) (WIP)
+python setup.py install
 ```
 
 ## Usage
