@@ -9,7 +9,7 @@ from libc.math cimport log
 from libc.math cimport abs
 cimport cython
 cdef FLOAT_t ZERO_TOL = 1e-16
-from _types import FLOAT
+from ._types import FLOAT
 import numpy as np
 import sys
 import six

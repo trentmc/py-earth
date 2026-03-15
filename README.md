@@ -7,20 +7,24 @@ Multivariate Adaptive Regression Splines, see the references below.
 
 ## Installation
 
-Make sure you have numpy and scikit-learn installed.  Then do the following:
+Requires Python 3.8+.
 
-```
+```bash
 git clone https://github.com/trentmc/py-earth.git
 cd py-earth
 
-# create virtualenv
+# Create and activate virtualenv
 python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# turn on virtualenv. (To turn off: "deactivate")
-source venv/bin/activate
+# Install build dependencies (Cython is needed to regenerate C extensions)
+pip install numpy scipy cython
 
-# install (fix dependencies as needed) (WIP)
-python setup.py install
+# Install with Cython compilation (required for Python 3.12+)
+python setup.py install --cythonize
+
+# Install remaining runtime dependencies
+pip install six scikit-learn
 ```
 
 ## Usage
