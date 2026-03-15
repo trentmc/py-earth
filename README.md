@@ -5,22 +5,6 @@ A Python implementation of Jerome Friedman's Multivariate Adaptive Regression Sp
 in the style of scikit-learn. The py-earth package implements Multivariate Adaptive Regression Splines using Cython and provides an interface that is compatible with scikit-learn's Estimator, Predictor, Transformer, and Model interfaces.  For more information about 
 Multivariate Adaptive Regression Splines, see the references below.
 
-## Now With Missing Data Support!
-
-The py-earth package now supports missingness in its predictors.  Just set `allow_missing=True` when constructing an `Earth` object.
-
-## Requesting Feedback
-
-If there are other features or improvements you'd like to see in py-earth, please send me an email or open or comment on an issue.  In particular, please let me know if any of the following are important to you:
-
-1. Improved speed
-2. Exporting models to additional formats
-3. Support for shared memory multiprocessing during fitting
-4. Support for cyclic predictors (such as time of day)
-5. Better support for categorical predictors
-6. Better support for large data sets
-7. Iterative reweighting during fitting
-
 ## Installation
 
 Make sure you have numpy and scikit-learn installed.  Then do the following:
