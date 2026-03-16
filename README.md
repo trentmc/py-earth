@@ -6,6 +6,14 @@ A Python implementation of Multivariate Adaptive Regression Splines (MARS) algor
 - For more speed, it uses **Cython**.
 - It can be used as a **pypi-style package. Or run directly** from this repo. Or copied as a sub-dir of another repo (with minor modifications).
 
+## Table of Contents
+- [Installation](#installation)
+- [Usage: 1D model](#usage-1d-model)
+- [Usage: 2D Model](#usage-2d-model)
+- [Appendix: References](#appendix-references)
+- [Appendix: MARS vs Fast MARS](#appendix-mars-vs-fast-mars)
+- [Other Implementations](#other-implementations)
+
 ## Installation
 
 Requires Python 3.8+.
