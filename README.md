@@ -6,7 +6,7 @@ A Python implementation of Multivariate Adaptive Regression Splines (MARS) algor
 - For more speed, it uses **Cython**.
 - It can be used as a **pypi-style package. Or run directly** from this repo. Or copied as a sub-dir of another repo (with minor modifications).
 
-This is a fork of [scikit-learn-contrib/py-earth](https://github.com/scikit-learn-contrib/py-earth), which was last changed in 2017, and archived a few years later.
+This is a fork of [scikit-learn-contrib/py-earth](https://github.com/scikit-learn-contrib/py-earth), which was last changed in 2017, and archived a few years later. Changes: make it work on Python 3.12; be able to run directly (vs pypi); fix other small errors that emerged; add 2D usage example.
 
 ## Table of Contents
 - [Installation](#installation)
