@@ -12,7 +12,7 @@ A Python implementation of Multivariate Adaptive Regression Splines (MARS) algor
 - [Usage: 2D Model](#usage-2d-model)
 - [Appendix: References](#appendix-references)
 - [Appendix: MARS vs Fast MARS](#appendix-mars-vs-fast-mars)
-- [Other Implementations](#other-implementations)
+- [Appendix: Other Implementations](#appendix-other-implementations)
 
 ## Installation
 
@@ -154,7 +154,7 @@ model = Earth(use_fast=True, fast_K=20, fast_h=1)
 
 The explicit reference is in `_forward.pyx:32:` .. [1] Fast MARS, Jerome H.Friedman, Technical Report No.110, May 1993.
 
-## Other Implementations
+## Appendix: Other Implementations
 
 I am aware of the following implementations of Multivariate Adaptive Regression Splines:
 
