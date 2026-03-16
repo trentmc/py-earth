@@ -10,7 +10,7 @@ This is a fork of [scikit-learn-contrib/py-earth](https://github.com/scikit-lear
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage: 1D model](#usage-1d-model)
+- [Usage: 1D Model](#usage-1d-model)
 - [Usage: 2D Model](#usage-2d-model)
 - [Appendix: References](#appendix-references)
 - [Appendix: MARS vs Fast MARS](#appendix-mars-vs-fast-mars)
@@ -35,7 +35,7 @@ pip install numpy scipy cython six scikit-learn
 python setup.py build_ext --inplace --cythonize
 ```
 
-## Usage: 1D model
+## Usage: 1D Model
 ```python
 import numpy
 from pyearth import Earth
